@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #d63384;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #d63384;
+        }
+        .chocolate {
+            position: absolute;
+            font-size: 24px;
+            animation: fall 1.5s linear;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(100px) scale(1.5); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: explode 1s ease-out forwards;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day, My Love! ❤️</h1>
+    
+    <div class="card">
+        <h2>Your Special Gift 🎁</h2>
+        <p>Click below to open your surprise!</p>
+        <button onclick="showGift()">Open Gift</button>
+        <p id="gift" class="hidden">🎉 Surprise! I have something special for you when we meet again! Until then, know that you are loved beyond measure. 💖</p>
+        <div id="chocolateFirework"></div>
+    </div>
+    
+    <script>
+        function showGift() {
+            document.getElementById('gift').classList.toggle('hidden');
+            triggerChocolateFirework();
+            triggerHeartExplosion();
+        }
+
+        function triggerChocolateFirework() {
+            const fireworkContainer = document.getElementById("chocolateFirework");
+            fireworkContainer.innerHTML = "";
+            for (let i = 0; i < 10; i++) {
+                let choc = document.createElement("span");
+                choc.innerText = "🍫";
+                choc.classList.add("chocolate");
+                choc.style.left = Math.random() * 80 + "%";
+                choc.style.top = "0";
+                choc.style.position = "absolute";
+                fireworkContainer.appendChild(choc);
+                setTimeout(() => choc.remove(), 1500);
+            }
+        }
+
+        function triggerHeartExplosion() {
+            const fireworkContainer = document.getElementById("chocolateFirework");
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+                heart.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+                heart.style.left = "50%";
+                heart.style.top = "50%";
+                fireworkContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 1000);
+            }
+        }
+    </script>
+</body>
+</html>

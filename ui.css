@@ -1,0 +1,386 @@
+.button__click {
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: box-shadow 400ms;
+    padding: 0.7em 1.7em;
+    font-size: 1rem;
+    border-radius: 20px;
+    color: rgb(0, 0, 0, 0.75);
+    background: transparent;
+    transform: scale(1.1) perspective(500px) ;
+  }
+  
+  .button__click:hover {
+    animation: button__click__animation 5.5s infinite both;
+  }
+  
+  .button__click__background {
+    transition: transform 1.5s;
+    z-index: -2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 200%;
+    animation: button__click__background 10s infinite;
+    background-color: #99fff8;
+    background-image: radial-gradient(at 89% 76%, hsla(13,63%,73%,1) 0px, transparent 50%),
+    radial-gradient(at 69% 38%, hsla(217,85%,71%,1) 0px, transparent 50%),
+    radial-gradient(at 12% 8%, hsla(214,70%,64%,1) 0px, transparent 50%),
+    radial-gradient(at 53% 10%, hsla(339,64%,65%,1) 0px, transparent 50%),
+    radial-gradient(at 5% 67%, hsla(212,74%,70%,1) 0px, transparent 50%);
+  }
+  
+  .button__click::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.295);
+  }
+  
+  .button__click:focus {
+    box-shadow: 0px 0px 0px 2px #000;
+  }
+  
+  @keyframes button__click__animation {
+    0%, 100% {
+      transform: scale(1.1) perspective(500px) rotateX(15deg) rotateY(-10deg);
+    }
+  
+    50% {
+      transform: scale(0.9) perspective(500px) rotateX(-15deg) rotateY(15deg);
+    }
+  }
+  
+  @keyframes button__click__background {
+    0%, 100% {
+      transform: translateX(0%);
+    }
+  
+    25% {
+      transform: translateX(-50%);
+    }
+  
+    50% {
+      transform: translateX(-50%) translateY(-50%);
+    }
+  
+    75% {
+      transform: translateX(0%) translateY(-50%);
+    }
+  }
+
+  .chocolate {
+    width: 50px;
+    height: 50px;
+    background-color: #8B4513;
+    border-radius: 10px;
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  transform: rotate(-45deg);
+  animation: explode 1s ease-out forwards;
+}
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+.heart::after {
+  left: 10px;
+  top: 0;
+}
+@keyframes explode {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; }
+}
+
+.flower {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-name: rotateFlower;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+.petal {
+  position: absolute;
+  width: 35px;
+  height: 60px;
+  background: linear-gradient(180deg, #fcdbdf, #fd688d);
+  border-radius: 50%;
+  animation-name: changeColor;
+  animation-duration: 8s;
+  animation-direction: reverse;
+  animation-iteration-count: infinite;
+}
+
+.petal1 {
+  transform: rotate(0deg) translateY(-50%);
+  animation-delay: 0.1s;
+}
+
+.petal2 {
+  transform: rotate(45deg) translateY(-50%);
+  animation-delay: 0.2s;
+}
+
+.petal3 {
+  transform: rotate(90deg) translateY(-50%);
+  animation-delay: 0.3s;
+}
+
+.petal4 {
+  transform: rotate(135deg) translateY(-50%);
+  animation-delay: 0.4s;
+}
+
+.petal5 {
+  transform: rotate(180deg) translateY(-50%);
+  animation-delay: 0.5s;
+}
+
+.petal6 {
+  transform: rotate(225deg) translateY(-50%);
+  animation-delay: 0.6s;
+}
+
+.petal7 {
+  transform: rotate(270deg) translateY(-50%);
+  animation-delay: 0.7s;
+}
+
+.petal8 {
+  transform: rotate(315deg) translateY(-50%);
+  animation-delay: 0.8s;
+}
+
+.center {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #f1d2d2;
+  border-radius: 50%;
+}
+
+/* .flower:hover .petal {
+  animation-name: changeColor;
+  animation-duration: 8s;
+  animation-direction: reverse;
+  animation-iteration-count: infinite;
+} */
+
+/* .flower:hover {
+  animation-name: rotateFlower;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+} */
+
+@keyframes changeColor {
+  0% {
+    background: linear-gradient(180deg, #fcdbdf, #fd688d);
+  }
+  25% {
+    background: linear-gradient(180deg, #fcd2e3, #fa6094);
+  }
+  50% {
+    background: linear-gradient(180deg, #fabefc, #c34ec7);
+  }
+  75% {
+    background: linear-gradient(180deg, #f7d6d6, #fd6a6a);
+  }
+  100% {
+    background: linear-gradient(180deg, #fcd3fc, #e844f7);
+  }
+}
+
+@keyframes rotateFlower {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.5) rotate(360deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.muzieknootjes {
+  display: block;
+  margin: auto;
+  position: relative;
+  width: 50%;
+  min-width: 300px;
+  height: 200px;
+  border: 0px solid #000;
+}
+
+.noot-1,
+.noot-2,
+.noot-3,
+.noot-4 {
+  position: absolute;
+  animation: notes 2s infinite linear;
+  font-size: 35px;
+  opacity: 0;
+}
+
+.noot-1 {
+  top: 60px;
+  left: 0;
+  animation-delay: 0.5s;
+}
+
+.noot-2 {
+  top: 30px;
+  left: 30%;
+  animation-delay: 1s;
+}
+
+.noot-3 {
+  top: 90px;
+  left: 60%;
+  animation-delay: 1.5s;
+}
+
+.noot-4 {
+  top: 40px;
+  left: 90%;
+  animation-delay: 2s;
+}
+
+@keyframes notes {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5) translate(50%, -50%);
+  }
+  80% {
+    opacity: 0;
+    transform: scale(1.5) translate(100%, -100%);
+  }
+  100% {
+    transform: scale(1.5) translate(100%, -100%);
+    opacity: 0;
+  }
+}
+
+
+/* From Uiverse.io by Na3ar-17 */ 
+.card-task-bar {
+  width: 200px;
+  /* background-color: rgba(36, 40, 50, 1);
+background-image: linear-gradient(135deg, rgba(36, 40, 50, 1) 0%, rgba(36, 40, 50, 1) 40%, rgba(37, 28, 40, 1) 100%); */
+
+  /* background-color: rgba(36, 40, 50, 1);
+  background-image: linear-gradient(
+    139deg,
+    rgba(36, 40, 50, 1) 0%,
+    rgba(36, 40, 50, 1) 0%,
+    rgba(37, 28, 40, 1) 100%
+  ); */
+
+  background-color: rgb(247, 154, 247);
+
+  border-radius: 10px;
+  padding: 15px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.card-task-bar .separator {
+  border-top: 1.5px solid #42434a;
+}
+
+.card-task-bar .list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0px 10px;
+}
+
+.card-task-bar .list .element {
+  display: flex;
+  align-items: center;
+  color: #7e8590;
+  gap: 10px;
+  transition: all 0.3s ease-out;
+  padding: 4px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card-task-bar .list .element svg {
+  width: 19px;
+  height: 19px;
+  transition: all 0.3s ease-out;
+}
+
+.card-task-bar .list .element .label {
+  font-weight: 600;
+}
+
+.card-task-bar .list .element:hover {
+  background-color: #5353ff;
+  color: #ffffff;
+  transform: translate(1px, -1px);
+}
+.card-task-bar .list .delete:hover {
+  background-color: #8e2a2a;
+}
+
+.card-task-bar .list .element:active {
+  transform: scale(0.99);
+}
+
+.card-task-bar .list:not(:last-child) .element:hover svg {
+  stroke: #ffffff;
+}
+
+.card-task-bar .list:last-child svg {
+  stroke: #bd89ff;
+}
+.card-task-bar .list:last-child .element {
+  color: #bd89ff;
+}
+
+.card-task-bar .list:last-child .element:hover {
+  background-color: rgba(56, 45, 71, 0.836);
+}

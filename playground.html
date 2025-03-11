@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="ui.css" />
+  <title>9x9 Sudoku Game</title>
+  <style>
+    body { 
+      text-align: center; 
+      font-family: Arial, sans-serif; 
+      background-color: #E6E6FA;
+      color: #4B0082;
+    }
+    table {
+      margin: auto; 
+      border-collapse: collapse; 
+      background-color: #D8BFD8;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    td {
+      width: 50px; 
+      height: 50px; 
+      text-align: center; 
+      border: 2px solid #4B0082; 
+      font-size: 18px;
+    }
+    input {
+      width: 45px; 
+      height: 45px; 
+      text-align: center; 
+      font-size: 16px;
+      background-color: #E6E6FA;
+      border: none;
+    }
+    button {
+      margin-top: 10px; 
+      padding: 10px 20px; 
+      font-size: 16px;
+      background-color: #9370DB;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #8A2BE2;
+    }
+    .trivia-message {
+      display: none;
+      font-size: 24px;
+      color: #4B0082;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="task-bar">
+    <!-- From Uiverse.io by Na3ar-17 --> 
+    <div class="card-task-bar">
+      <ul class="list">
+        <li class="element">
+          <a href="index.html">
+            <svg
+              class="lucide lucide-home"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2"
+              stroke="#7e8590"
+              fill="none"
+              viewBox="0 0 24 24"
+              height="24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M3 10L12 2l9 8v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4h-4v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            </svg>
+            <p class="label">Home</p>
+          </a>
+        </li>
+      </ul>
+      <div class="separator"></div>
+      <ul class="list">
+        <li class="element">
+          <a href="playground.html">
+            <svg
+              class="lucide lucide-settings"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2"
+              stroke="#7e8590"
+              fill="none"
+              viewBox="0 0 24 24"
+              height="24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+              ></path>
+              <circle r="3" cy="12" cx="12"></circle>
+            </svg>
+            <p class="label">Playground</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <h1>9x9 Sudoku Game</h1>
+  <table id="sudoku-board"></table>
+  <br>
+  <button onclick="generateSudoku()">New Sudoku</button>
+  <button onclick="checkWin()">Submit</button>
+  <div id="win-message" class="trivia-message">🎉 Chúc mừng, bạn đã hoàn thành! 🎉</div>
+  
+  <h2>Trivia Question</h2>
+  <p>Trang yêu Tim hay Việt Anh hơn ???</p>
+  <button onclick="checkTrivia(this)" data-answer="wrong">Tim</button>
+  <button onclick="checkTrivia(this)" data-answer="wrong">Việt Anh</button>
+  <button onclick="checkTrivia(this)" data-answer="correct" data-message="trivia1">Quá Khó</button>
+  <button onclick="checkTrivia(this)" data-answer="wrong">Khác 😅</button>
+  <div id="trivia1" class="trivia-message">Chắc chắn là vầy gòi !!!</div>
+  
+  <h2>Trivia Question</h2>
+  <p>Đâu là ngày mình bắt đầu ???</p>
+  <button onclick="checkTrivia(this)" data-answer="wrong">15/6</button>
+  <button onclick="checkTrivia(this)" data-answer="wrong">16/6</button>
+  <button onclick="checkTrivia(this)" data-answer="correct" data-message="trivia2">17/6</button>
+  <button onclick="checkTrivia(this)" data-answer="wrong">18/6</button>
+  <div id="trivia2" class="trivia-message">🎉 Kinh, vẫn nhớ cơ !!! 🎉</div>
+  
+  <h2>Trivia Question</h2>
+  <p>Đâu là món ăn yêu thích của Việt Anh ???</p>
+  <button onclick="checkTrivia(this)" data-answer="wrong">Gà rán</button>
+  <button onclick="checkTrivia(this)" data-answer="correct" data-message="trivia3">Không gì cả</button>
+  <button onclick="checkTrivia(this)" data-answer="wrong">Dookki</button>
+  <button onclick="checkTrivia(this)" data-answer="wrong">Bánh tráng</button>
+  <div id="trivia3" class="trivia-message">Việt Anh rất healthy nên không thích mấy thứ trên 😅</div>
+
+  <script>
+    // Sudoku 9x9: ma trận giải đã được xác định (ví dụ một mẫu Latin Square có cấu trúc 3x3 con hợp lệ)
+    let board = [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [4, 5, 6, 7, 8, 9, 1, 2, 3],
+      [7, 8, 9, 1, 2, 3, 4, 5, 6],
+      [2, 3, 4, 5, 6, 7, 8, 9, 1],
+      [5, 6, 7, 8, 9, 1, 2, 3, 4],
+      [8, 9, 1, 2, 3, 4, 5, 6, 7],
+      [3, 4, 5, 6, 7, 8, 9, 1, 2],
+      [6, 7, 8, 9, 1, 2, 3, 4, 5],
+      [9, 1, 2, 3, 4, 5, 6, 7, 8]
+    ];
+
+    function generateSudoku() {
+      let puzzle = board.map(row => row.slice());
+      let emptyCells = 50; // số ô trống (có thể điều chỉnh theo mức độ khó)
+      while (emptyCells > 0) {
+        let row = Math.floor(Math.random() * 9);
+        let col = Math.floor(Math.random() * 9);
+        if (puzzle[row][col] !== 0) {
+          puzzle[row][col] = 0;
+          emptyCells--;
+        }
+      }
+      renderBoard(puzzle);
+      document.querySelectorAll(".trivia-message").forEach(msg => msg.style.display = "none");
+    }
+
+    function renderBoard(puzzle) {
+      let table = document.getElementById("sudoku-board");
+      table.innerHTML = "";
+      for (let i = 0; i < 9; i++) {
+        let row = document.createElement("tr");
+        for (let j = 0; j < 9; j++) {
+          let cell = document.createElement("td");
+          if (puzzle[i][j] !== 0) {
+            cell.textContent = puzzle[i][j];
+          } else {
+            let input = document.createElement("input");
+            input.type = "number";
+            input.min = "1";
+            input.max = "9";
+            input.dataset.row = i;
+            input.dataset.col = j;
+            cell.appendChild(input);
+          }
+          row.appendChild(cell);
+        }
+        table.appendChild(row);
+      }
+    }
+
+    function checkWin() {
+      let inputs = document.querySelectorAll("input");
+      if ([...inputs].every(input => input.value == board[input.dataset.row][input.dataset.col])) {
+        document.getElementById("win-message").style.display = "block";
+      }
+    }
+
+    function checkTrivia(button) {
+      if (button.dataset.answer === "correct") {
+        document.getElementById(button.dataset.message).style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f6cefe;
+}
+
+.header {
+    display: grid; 
+    grid-template-columns: 200px 1fr 200px;
+}
+
+.tim1_img
+,.tim2_img {
+    height: auto;
+    width: 200px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.task-bar {
+    background-color: violet;
+    height: 200px;
+}
+
+
+.main-page {
+    text-align: center; 
+    display: grid; 
+    grid-template-columns: 200px 1fr 200px;
+}
+
+.middle {
+    text-align: center;
+}
+
+.trang1_img {
+    height: auto;
+    width: 400px;
+    border-radius: 20px;
+}
+
+.trang2_img {
+    height: auto;
+    width: 200px;
+    border-radius: 25px;
+}
+
+.card_gift, 
+.card {
+    background: rgb(212, 130, 192);
+    padding: 20px; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;  
+    max-width: 600px;
+}
+
+.card_gift {
+    height: 320px;
+    display: inline-grid;
+    place-items: center;
+    /* grid-template-rows: 1fr 1fr 200px; */
+    grid-template-rows: auto auto auto;
+    text-align: center;
+}
+
+.hidden { 
+    display: none;
+}
+
+.socola_img {
+    /* width: 500px;
+    height: 350px;
+    border-radius: 25px;
+    display: none;  */
+    width: 100%;
+    max-width: 100%;
+    height: auto; 
+    border-radius: 25px;
+    display: none;
+    position: relative; 
+    margin: 0 auto; 
+    z-index: 1;
+}
+
+.songs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0vh;
+    background-color: rgb(212, 130, 192);
+    color: white;
+}
+
+.song {
+    display: grid; 
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.song1 {
+
+}
+
+/* button {
+    background: rgb(253, 253, 253);
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+button:hover {
+    background:rgb(238, 193, 227);
+    transition: 0.25s;
+} */
